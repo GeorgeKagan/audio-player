@@ -1,7 +1,9 @@
 import * as React from 'react';
-import './App.css';
+import AudioPlayer from 'react-h5-audio-player';
 
+import './App.css';
 import logo from './logo.svg';
+import music from './music.mp3';
 
 class App extends React.Component {
   public render() {
@@ -14,6 +16,7 @@ class App extends React.Component {
         <p className="App-intro">
           To get started, edit <code>src/App.tsx</code> and save to reload.
         </p>
+          <AudioPlayer src={music} />
       </div>
     );
   }
