@@ -20,9 +20,49 @@
 
 .App-intro {
   font-size: large;
+  padding: 20px;
 }
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.App-main {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.Audio-player {
+  margin: 50px 25px;
+}
+
+.Events {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 50px 0;
+}
+
+.Event {
+  flex: 1 1 auto;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  text-align: center;
+  margin: 25px;
+  padding: 25px;
+  min-width: 100px;
+  cursor: pointer;
+  transition: background 1s;
+  font-size: large;
+}
+.Event:hover {
+  background: #eee;
+}
+
+.Event div {
+  font-weight: bold;
+}
+.Event small {
+  color: gray;
 }
