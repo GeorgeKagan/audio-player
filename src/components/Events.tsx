@@ -1,19 +1,33 @@
 import * as React from 'react';
+import {eventsData, IEvent} from "../eventsData";
 
-class Events extends React.Component {
+class Events extends React.Component<{}, {events: IEvent[]}> {
 
-  private static _getEventButtons(events: Array<{name: string, time: number}>) {
+  public constructor(props: any) {
+    super(props);
+    this.state = {events: eventsData};
+  }
+
+  public render() {
+    return (
+      <div className="Events">
+        {this._getEventButtons()}
+      </div>
+    )
+  }
+
+  private _getEventButtons() {
     const rows = [];
 
-    for (let i = 0; i < events.length; i++) {
+    for (const event of this.state.events) {
       rows.push(
         <div className="Event"
-             key={i}
-             onClick={Events._jumpToTime}
-             data-time={events[i].time}
+             onClick={this._jumpToTime}
+             data-time={event.time}
+             style={{'borderColor': event.color}}
         >
-          <div>{events[i].name}</div>
-          <small>{events[i].time}:00</small>
+          <div>{event.name}</div>
+          <small>{event.time}:00</small>
         </div>
       );
     }
@@ -21,28 +35,13 @@ class Events extends React.Component {
     return rows;
   }
 
-  private static _jumpToTime(e: any): any {
-    const time = e.currentTarget.getAttribute('data-time');
+  private _jumpToTime(e: React.MouseEvent<HTMLDivElement>): void {
+    const time = parseInt(e.currentTarget.getAttribute('data-time') || '0', 10);
     // Should pass the player as a dependency and not access it directly
     // Couldn't find a way to do it in the time I had
     const player = document.getElementsByTagName('audio')[0];
     player.currentTime = time;
     player.play();
-  }
-
-  // Should get from API
-  private events = [
-    {name: 'Event 1', time: 13},
-    {name: 'Event 2', time: 23},
-    {name: 'Event 3', time: 33}
-  ];
-
-  public render() {
-    return (
-      <div className="Events">
-        {Events._getEventButtons(this.events)}
-      </div>
-    )
   }
 }
 
