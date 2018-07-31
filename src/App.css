@@ -37,6 +37,15 @@
   margin: 50px 25px;
 }
 
+.Event-point {
+  content: " ";
+  position: absolute;
+  top: 0;
+  width: 13px;
+  height: 13px;
+  border-radius: 13px;
+}
+
 .Events {
   display: flex;
   justify-content: center;

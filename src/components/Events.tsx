@@ -25,6 +25,7 @@ class Events extends React.Component<{}, {events: IEvent[]}> {
              onClick={this._jumpToTime}
              data-time={event.time}
              style={{'borderColor': event.color}}
+             key={event.name}
         >
           <div>{event.name}</div>
           <small>{event.time}:00</small>
@@ -39,6 +40,7 @@ class Events extends React.Component<{}, {events: IEvent[]}> {
     const time = parseInt(e.currentTarget.getAttribute('data-time') || '0', 10);
     // Should pass the player as a dependency and not access it directly
     // Couldn't find a way to do it in the time I had
+    // todo: use playerRef :)
     const player = document.getElementsByTagName('audio')[0];
     player.currentTime = time;
     player.play();
